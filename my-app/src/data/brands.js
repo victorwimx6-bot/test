@@ -3,7 +3,7 @@ export const brands = [
   {
     name: "Samsung",
     url: "https://tuenlace.com/samsung",
-    imageUrl: "https://images.samsung.com/is/image/samsung/assets/global/about-us/brand/logo/360_197_1.png?$720_N_PNG$",
+    imageUrl: "https://static.vecteezy.com/system/resources/previews/020/975/547/non_2x/samsung-logo-samsung-icon-transparent-free-png.png",
     altText: "Samsung categoria"
   },
   {

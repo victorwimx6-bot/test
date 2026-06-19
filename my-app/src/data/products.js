@@ -87,7 +87,7 @@ export const products = [
     {
     id: 9,
     name: "Samsung Galaxy S23 Ultra",
-    series: "Samsung Galaxy S23 Series",
+    series: "Samsung Galaxy Ultra",
     brand: "Samsung",
     images: ["https://static.vecteezy.com/system/resources/previews/022/722/945/non_2x/samsung-galaxy-s23-ultra-transparent-image-free-png.png"],
     priceMin: 20000, priceMax: 24000,

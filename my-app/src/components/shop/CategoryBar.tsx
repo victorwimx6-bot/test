@@ -23,6 +23,7 @@ export default function CategoryBar({
       <button
         onClick={() => onChange("all")}
         className={`
+          cursor-pointer
           pb-2 transition
           ${selected === "all"
             ? "border-b-2 border-black"
@@ -37,8 +38,7 @@ export default function CategoryBar({
           key={category.key}
           onClick={() => onChange(category.key)}
           className={`
-            flex items-center gap-2 pb-2 transition
-
+            flex items-center gap-2 pb-2 transition cursor-pointer
             ${selected === category.key
               ? "border-b-2 border-black"
               : "opacity-60 hover:opacity-100"}

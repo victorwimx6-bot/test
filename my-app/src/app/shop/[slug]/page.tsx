@@ -70,14 +70,14 @@ function ProductGallery({ images, discount, name }: { images: string[]; discount
           <>
             <button 
               onClick={handlePrev}
-              className="hidden md:flex absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 border border-gray-200 rounded-full w-9 h-9 items-center justify-center shadow-sm transition active:scale-95 z-10"
+              className="hidden md:flex absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 border border-gray-200 rounded-full w-9 h-9 items-center justify-center shadow-sm transition active:scale-95 z-10 cursor-pointer"
               aria-label="Imagen anterior"
             >
               ‹
             </button>
             <button 
               onClick={handleNext}
-              className="hidden md:flex absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 border border-gray-200 rounded-full w-9 h-9 items-center justify-center shadow-sm transition active:scale-95 z-10"
+              className="hidden md:flex absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 border border-gray-200 rounded-full w-9 h-9 items-center justify-center shadow-sm transition active:scale-95 z-10 cursor-pointer"
               aria-label="Siguiente imagen"
             >
               ›
@@ -93,7 +93,7 @@ function ProductGallery({ images, discount, name }: { images: string[]; discount
             <button
               key={idx}
               onClick={() => setCurrentIndex(idx)}
-              className={`relative w-16 h-16 border-2 rounded-lg overflow-hidden bg-white transition flex-shrink-0 ${
+              className={`relative w-16 h-16 border-2 rounded-lg overflow-hidden bg-white transition shrink-0 cursor-pointer ${
                 currentIndex === idx ? "border-blue-500 scale-102" : "border-gray-200 opacity-70"
               }`}
             >
@@ -142,7 +142,7 @@ function ProductInfo({ product }: { product: any }) {
 
       <button 
         onClick={() => alert(`Pedido: ${product.name}`)}
-        className="w-full sm:w-fit px-8 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg transition-all text-sm mt-2"
+        className="w-full sm:w-fit px-8 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg transition-all text-sm mt-2 cursor-pointer"
       >
         Comprar Ahora
       </button>
@@ -163,11 +163,11 @@ function ProductTabs({ descripcion2 }: { descripcion2?: string }) {
   return (
     <div className="mt-8 border-t border-gray-200">
       <div className="flex gap-6 border-b border-gray-200 text-xs font-bold uppercase tracking-wider text-gray-400">
-        <button onClick={() => setActiveTab("desc")} className={`py-3 relative ${activeTab === "desc" ? "text-blue-600" : ""}`}>
+        <button onClick={() => setActiveTab("desc")} className={`cursor-pointer py-3 relative ${activeTab === "desc" ? "text-blue-600" : ""}`}>
           Descripción
           {activeTab === "desc" && <div className="absolute bottom-0 inset-x-0 h-0.5 bg-blue-600" />}
         </button>
-        <button onClick={() => setActiveTab("cal")} className={`py-3 relative ${activeTab === "cal" ? "text-blue-600" : ""}`}>
+        <button onClick={() => setActiveTab("cal")} className={`cursor-pointer py-3 relative ${activeTab === "cal" ? "text-blue-600" : ""}`}>
           Información sobre calidad
           {activeTab === "cal" && <div className="absolute bottom-0 inset-x-0 h-0.5 bg-blue-600" />}
         </button>

@@ -9,7 +9,7 @@ export default function ShopFilters({ sort, setSort }: Props) {
       <select
         value={sort}
         onChange={(e) => setSort(e.target.value)}
-        className="w-full max-w-xs rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm outline-none"
+        className="w-full max-w-xs rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm outline-none cursor-pointer"
       >
         <option value="default">Orden por defecto</option>
         <option value="price-low">Precio menor</option>

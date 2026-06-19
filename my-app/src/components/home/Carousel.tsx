@@ -103,3 +103,5 @@ export default function Carousel({
     </div>
   );
 }
+
+// como se hace un carousel que sea muy responsive, en todas las pantallas se desplace en automatico, en pantalla gradnes tiene botones de desplazamiento,  pero en tables y celulares se desaparecen y se arrastran con el touch, no olvidar que se desplaza a la derecha en automatico siempre, ete carousel no es 100% imagen, el carousel que quieren es para mostrar un ceular random de cara serie, su descripcion, boton de compra con acceso directo la publicacion del celular en especifico que se busco

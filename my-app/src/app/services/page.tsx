@@ -112,7 +112,7 @@ export default function Services() {
 
       {/* Sección de Certificación ISO 9001 */}
       <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 text-center md:text-left bg-gray-50 rounded-2xl p-8 md:p-12 mb-16">
-        <div className="w-48 h-48 md:w-56 md:h-56 relative flex-shrink-0">
+        <div className="w-48 h-48 md:w-56 md:h-56 relative shrink-0">
           <Image
             src="https://wiemx.com/wp-content/uploads/2025/06/9001-certificacion-500x500.png" // Reemplaza con la ruta real
             alt="Certificación ISO 9001:2015"

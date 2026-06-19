@@ -64,7 +64,7 @@ export default function KnowUs() {
       <div className="flex flex-col md:flex-row-reverse items-center gap-10 lg:gap-16 mb-20">
         {/* Imagen */}
         <div className="w-full md:w-1/2 relative">
-          <div className="relative w-full aspect-square max-w-[580px] mx-auto md:mx-0 rounded-xl overflow-hidden shadow-md bg-gray-100">
+          <div className="relative w-full aspect-square max-w-145 mx-auto md:mx-0 rounded-xl overflow-hidden shadow-md bg-gray-100">
             <Image
               src={DATA.mission.image}
               alt="Nuestra misión"
@@ -116,7 +116,7 @@ export default function KnowUs() {
 
         {/* Imagen */}
         <div className="w-full md:w-1/2 relative flex justify-center md:justify-end">
-          <div className="relative w-full aspect-square max-w-[580px] rounded-xl overflow-hidden shadow-md bg-gray-100">
+          <div className="relative w-full aspect-square max-w-145 rounded-xl overflow-hidden shadow-md bg-gray-100">
             <Image
               src={DATA.vision.image}
               alt="Nuestra visión"
@@ -139,7 +139,7 @@ export default function KnowUs() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
           {DATA.business.map((item, index) => (
             <div key={index} className="flex flex-col gap-4 group">
-              <div className="relative w-full aspect-[1.5/1] rounded-xl overflow-hidden shadow-sm group-hover:shadow-md transition-shadow bg-gray-100">
+              <div className="relative w-full aspect-1.5/1 rounded-xl overflow-hidden shadow-sm group-hover:shadow-md transition-shadow bg-gray-100">
                 <Image
                   src={item.image}
                   alt={item.title}
@@ -167,14 +167,14 @@ export default function KnowUs() {
         <h2 className="text-3xl md:text-4xl font-bold text-center text-[#2b5cb4] mb-8">
           Nuestros proveedores
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 items-center justify-items-center bg-gray-50 rounded-2xl p-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 items-center justify-items-center rounded-2xl p-8">
           {DATA.providers.map((provider, index) => (
-            <div key={index} className="relative w-32 h-20 md:w-40 md:h-24">
+            <div key={index} className="relative w-[20vw] h-[15vw] md:w-[15vw] md:h-[10vw]">
               <Image
                 src={provider.image}
                 alt={provider.name}
                 fill
-                sizes="(max-width: 768px) 128px, 160px"
+                sizes="(max-width: 768px) 20vw, 15vw"
                 className="object-contain"
                 loading="lazy"
               />

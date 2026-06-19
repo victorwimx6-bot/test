@@ -7,6 +7,7 @@ import MercadoAdds from "../components/home/MercadoAdds";
 import ProductGrid from "../components/ProductGrid";
 import IphoneTemplate from "../components/home/IphoneTemplate";
 import { brands } from "../data/brands"
+import { products } from "../data/products"
 
 export default function Home() {
   return (
@@ -16,7 +17,7 @@ export default function Home() {
       <PhoneShowcase />
       <MeritsGrid />
       <MercadoAdds />
-      <ProductGrid />
+      <ProductGrid products={products} />
       <IphoneTemplate />
       <Carousel images={brands.map((brand) => brand.imageUrl)} />
     </main>

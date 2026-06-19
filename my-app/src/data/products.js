@@ -9,6 +9,7 @@ export const products = [
     images: ["https://pngimg.com/uploads/iphone_13/iphone_13_PNG27.png"],
     priceMin: 6700, priceMax: 12000,
     colors: [{ hex: "#38BDF8" }, { hex: "#86EFAC" }, { hex: "#94A3B8" }, { hex: "#E2E8F0" }, { hex: "#4ADE80" }],
+    descripcion: "• Pantalla chida • camara chida • bateria chida",
     href: "/products/iphone-13-pro",
   },
   {
@@ -19,6 +20,7 @@ export const products = [
     images: ["https://pngimg.com/uploads/iphone_13/iphone_13_PNG27.png"],
     priceMin: 6700, priceMax: 8200,
     colors: [{ hex: "#38BDF8" }, { hex: "#1E293B" }, { hex: "#DC2626" }, { hex: "#4ADE80" }, { hex: "#86EFAC" }],
+    descripcion: "• seguridad, • es el 13",
     href: "/products/iphone-13",
   },
   {
@@ -32,6 +34,7 @@ export const products = [
     ],
     priceMin: 6700, priceMax: 8200,
     colors: [{ hex: "#38BDF8" }, { hex: "#1E293B" }, { hex: "#DC2626" }, { hex: "#4ADE80" }],
+    descripcion: "• el mismo que el 13 pero en mini",
     href: "/products/iphone-13-mini",
   },
   {
@@ -42,6 +45,7 @@ export const products = [
     images: ["https://pngimg.com/uploads/iphone_13/iphone_13_PNG27.png"],
     priceMin: 6700, priceMax: 12000,
     colors: [{ hex: "#38BDF8" }, { hex: "#86EFAC" }, { hex: "#94A3B8" }, { hex: "#E2E8F0" }, { hex: "#4ADE80" }],
+    descripcion: "• el 13 pero pro • pro bien pro",
     href: "/products/iphone-13-pro-max",
   },
   {
@@ -52,6 +56,7 @@ export const products = [
     images: ["https://pngimg.com/uploads/iphone16/iphone16_PNG2.png"],
     priceMin: 14000, priceMax: 18000,
     discount: 5,
+    descripcion: "• el 16 pro • mas pro que el no pro",
     href: "/products/iphone-16-pro",
   },
   {
@@ -62,6 +67,7 @@ export const products = [
     images: ["https://m.media-amazon.com/images/I/51mdPnQu3WL._AC_UF1000,1000_QL80_.jpg"],
     priceMin: 10500, priceMax: 13800,
     discount: 29,
+    descripcion: "• flip 7 • no es flip 6",
     href: "/products/samsung-galaxy-z-flip-7",
   },
   {
@@ -72,6 +78,7 @@ export const products = [
     images: ["https://m.media-amazon.com/images/I/61dTYlJ3o5L.jpg"],
     priceMin: 18000, priceMax: 22000,
     discount: 12,
+    descripcion: "• fold 7 • color negro",
     href: "/products/samsung-galaxy-z-fold-7",
   },
   {
@@ -82,6 +89,7 @@ export const products = [
     images: ["https://pngimg.com/uploads/iphone17/iphone17_PNG27.png"],
     priceMin: 20000, priceMax: 24000,
     discount: 6,
+    descripcion: "• el 17 pro • mas pro que el no pro",
     href: "/products/iphone-17-pro-max",
   },
     {
@@ -92,6 +100,7 @@ export const products = [
     images: ["https://static.vecteezy.com/system/resources/previews/022/722/945/non_2x/samsung-galaxy-s23-ultra-transparent-image-free-png.png"],
     priceMin: 20000, priceMax: 24000,
     discount: 6,
+    descripcion: "• la mejor de la gama • camara increible",
     href: "/products/samsung-galaxy-s23-ultra",
   },
 ]

@@ -31,7 +31,7 @@ export default function Contact() {
       </h2>
 
       {/* Mapa Google */}
-      <div className="w-full h-80 md:h-[500px] rounded-xl overflow-hidden shadow-md bg-gray-100 mb-16">
+      <div className="w-full h-80 md:h-125 rounded-xl overflow-hidden shadow-md bg-gray-100 mb-16">
         <iframe
           title={CONTACT_INFO.mapTitle}
           src={CONTACT_INFO.mapSrc}

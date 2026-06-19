@@ -1,29 +1,39 @@
 // src/components/Carousel.tsx
 "use client";
 
-import { useState, useEffect } from 'react';
-import { images } from "../../data/anunciosNav";
+import { useState, useEffect } from "react";
+import { images as defaultImages } from "../../data/anunciosNav";
 
 interface CarouselProps {
+  images?: string[];
   autoPlay?: boolean;
   interval?: number;
 }
 
-export default function Carousel({ 
-  autoPlay = true, 
-  interval = 3000 
+export default function Carousel({
+  images = defaultImages,
+  autoPlay = true,
+  interval = 3000,
 }: CarouselProps) {
   const [current, setCurrent] = useState<number>(0);
 
+  // Si cambia el arreglo de imágenes (por ejemplo, otro <Carousel images={...} />
+  // montado en la misma página), reinicia el índice para no quedar fuera de rango.
   useEffect(() => {
-    if (!autoPlay) return;
-    
+    setCurrent(0);
+  }, [images]);
+
+  useEffect(() => {
+    if (!autoPlay || images.length <= 1) return;
+
     const timer = setInterval(() => {
       setCurrent((prev: number) => (prev + 1) % images.length);
     }, interval);
-    
+
     return () => clearInterval(timer);
-  }, [images.length, autoPlay, interval]);
+  }, [images, autoPlay, interval]);
+
+  if (!images.length) return null;
 
   const goToSlide = (index: number): void => {
     setCurrent(index);
@@ -44,12 +54,12 @@ export default function Carousel({
           <div
             key={index}
             className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === current ? 'opacity-100' : 'opacity-0'
+              index === current ? "opacity-100" : "opacity-0"
             }`}
           >
-            <img 
-              src={img} 
-              className="w-full h-full object-cover" 
+            <img
+              src={img}
+              className="w-full h-full object-cover"
               alt={`Slide ${index + 1}`}
               loading="lazy"
             />
@@ -57,35 +67,39 @@ export default function Carousel({
         ))}
       </div>
 
-      {/* Botones */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full"
-        aria-label="Anterior"
-      >
-        ❮
-      </button>
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full"
-        aria-label="Siguiente"
-      >
-        ❯
-      </button>
-
-      {/* Indicadores */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-        {images.map((_: string, index: number) => (
+      {/* Botones — solo si hay más de una imagen */}
+      {images.length > 1 && (
+        <>
           <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all ${
-              index === current ? 'bg-white w-6' : 'bg-white/50'
-            }`}
-            aria-label={`Ir a slide ${index + 1}`}
-          />
-        ))}
-      </div>
+            onClick={prevSlide}
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full"
+            aria-label="Anterior"
+          >
+            ❮
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full"
+            aria-label="Siguiente"
+          >
+            ❯
+          </button>
+
+          {/* Indicadores */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+            {images.map((_: string, index: number) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`w-3 h-3 rounded-full transition-all ${
+                  index === current ? "bg-white w-6" : "bg-white/50"
+                }`}
+                aria-label={`Ir a slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 }

@@ -9,23 +9,31 @@ export default function ProductCard({ product }: { product: any }) {
   const multi = product.images.length > 1
 
   return (
-    <div className="relative flex flex-col bg-white group">
+    <div className="
+    relative 
+    flex 
+    flex-col 
+    bg-white 
+    group
+    border
+    border-gray-200
+    hover:shadow-md
+    transition
+    ">
       {product.discount && (
         <span className="absolute top-2 left-2 z-10 bg-blue-500 text-white text-[11px] font-bold px-2 py-0.5 rounded-full">
           -{product.discount}%
         </span>
       )}
 
-      <div className="relative w-full aspect-[4/3] bg-white overflow-hidden">
+      <div className="relative w-full aspect-4/3 bg-white overflow-hidden">
         <Image src={product.images[imgIdx]} alt={product.name} fill className="object-contain p-3 transition-transform duration-300 group-hover:scale-105" />
 
         {multi && (
           <>
             <button onClick={() => setImgIdx(i => Math.max(i - 1, 0))} className="absolute left-1 top-1/2 -translate-y-1/2 bg-black/40 text-white rounded-full p-0.5">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6"/></svg>
             </button>
             <button onClick={() => setImgIdx(i => Math.min(i + 1, product.images.length - 1))} className="absolute right-1 top-1/2 -translate-y-1/2 bg-black/40 text-white rounded-full p-0.5">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18l6-6-6-6"/></svg>
             </button>
           </>
         )}

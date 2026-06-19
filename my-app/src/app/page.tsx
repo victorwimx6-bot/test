@@ -4,18 +4,21 @@ import Carousel from "../components/home/Carousel";
 import PhoneShowcase from "../components/PhoneShowcase";
 import MeritsGrid from "../components/home/MeritsGrid";
 import MercadoAdds from "../components/home/MercadoAdds";
-import ProductGrid from "../components/home/ProductGrid";
+import ProductGrid from "../components/ProductGrid";
+import IphoneTemplate from "../components/home/IphoneTemplate";
+import { brands } from "../data/brands"
 
 export default function Home() {
   return (
     <main className="min-h-screen p-8">
       <Carousel />
-      <BrandCategory />
+      <BrandCategory brands={["Samsung", "Apple"]} />
       <PhoneShowcase />
       <MeritsGrid />
       <MercadoAdds />
-      <p className="font-bold text-center text-2xl mt-5">NUESTROS PRODUCTOS</p>
       <ProductGrid />
+      <IphoneTemplate />
+      <Carousel images={brands.map((brand) => brand.imageUrl)} />
     </main>
   );
 }

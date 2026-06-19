@@ -61,7 +61,7 @@ export default function Footer() {
           <ItemLink
             icon="https://wiemx.com/wp-content/uploads/2025/06/chat-25x25.webp"
             text="Contáctanos"
-            href="/contacto"
+            href="/contact"
           />
         </div>
 
@@ -72,13 +72,13 @@ export default function Footer() {
           <ItemLink
             icon="https://wiemx.com/wp-content/uploads/2025/06/mano-25x25.png"
             text="WieMX"
-            href="/nosotros"
+            href="/know-us"
           />
 
           <ItemLink
             icon="https://wiemx.com/wp-content/uploads/2025/06/reparacion-de-telefonos-25x25.png"
             text="Service Center"
-            href="/service-center"
+            href="/services"
           />
 
           <Item

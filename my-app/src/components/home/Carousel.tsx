@@ -2,15 +2,14 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import { images } from "../../data/anunciosNav";
 
 interface CarouselProps {
-  images: string[];
   autoPlay?: boolean;
   interval?: number;
 }
 
 export default function Carousel({ 
-  images, 
   autoPlay = true, 
   interval = 3000 
 }: CarouselProps) {

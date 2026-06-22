@@ -1,6 +1,6 @@
 // src/data/brands.ts
 
-interface Brand {
+export interface Brand {
   name: string;
   url: string;
   imageUrl: string;

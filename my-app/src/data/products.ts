@@ -3,7 +3,7 @@ export interface ProductColor {
   hex: string;
 }
 
-export interface Product {
+export default interface Product {
   id: number;
   name: string;
   series: string;

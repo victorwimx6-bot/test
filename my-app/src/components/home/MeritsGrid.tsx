@@ -39,13 +39,7 @@ export default function MeritsGrid() {
     <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
       {merits.map((item, i) => (
         <div key={i} className="flex items-start gap-3 p-4 bg-white rounded-lg shadow-sm">
-          <Image
-            src={item.img}
-            alt={item.title}
-            width={40}
-            height={40}
-            className="flex-shrink-0"
-            unoptimized
+          <Image src={item.img} alt={item.title} width={40} height={40} className="shrink-0" unoptimized
           />
           <div>
             <h3 className="font-semibold text-sm">{item.title}</h3>

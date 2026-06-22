@@ -1,10 +1,10 @@
 import React from "react";
 import Link from "next/link";
-// Correcto: import sin llaves (porque en products.ts es 'export default interface')
 import Product from "../../data/products";
 
+// React.memo evita re-renderizados innecesarios en el carrusel
 const ProductSlide = React.memo(({ product }: { product: Product }) => {
-  // Extraemos características de 'descripcion1'
+  // Convierte "• Pantalla chida • camara chida" en ["Pantalla chida", "camara chida"]
   const features = product.descripcion1
     .split("•")
     .map((text: string) => text.trim())
@@ -12,6 +12,7 @@ const ProductSlide = React.memo(({ product }: { product: Product }) => {
 
   return (
     <div className="w-full h-full bg-white rounded-3xl p-6 md:p-10 flex flex-col md:flex-row items-center gap-6 md:gap-10 shadow-2xl">
+      {/* Imagen */}
       <div className="w-full md:w-1/2 flex justify-center items-center">
         <img
           src={product.images[0]}
@@ -21,10 +22,10 @@ const ProductSlide = React.memo(({ product }: { product: Product }) => {
         />
       </div>
 
+      {/* Info */}
       <div className="w-full md:w-1/2 flex flex-col justify-center space-y-4 text-black">
         <h3 className="text-2xl md:text-4xl font-bold">{product.name}</h3>
         
-        {/* Mostramos características, o descripción larga si no hay */}
         {features.length > 0 ? (
           <ul className="list-disc pl-5 space-y-1 text-gray-700 text-sm md:text-base">
             {features.map((item: string, idx: number) => (

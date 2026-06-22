@@ -3,7 +3,7 @@ import { images } from "../../data/anuncios"
 
 const MercadoAdds = () => {
   return (
-    <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="mt-10 grid grid-cols-1 md:grid-cols-2 ">
       {images.map((image, index) => (
         <div key={index} className="max-w-62.5 mx-auto">
           <Image

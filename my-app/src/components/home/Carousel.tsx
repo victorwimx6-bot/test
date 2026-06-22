@@ -5,7 +5,7 @@ import Product from "../../data/products";
 import { Brand } from "../../data/brands";
 import ProductSlide from "./ProductSlide";
 
-// Configuración de props con sobrecarga para evitar errores de tipos
+// El componente acepta O productos O marcas, nunca ambos
 interface BaseCarouselProps {
   autoPlay?: boolean;
   interval?: number;
@@ -14,12 +14,12 @@ interface BaseCarouselProps {
 
 interface ProductsCarouselProps extends BaseCarouselProps {
   products: Product[];
-  brands?: never; // Si usas products, no permitimos brands
+  brands?: never; 
 }
 
 interface BrandsCarouselProps extends BaseCarouselProps {
   brands: Brand[];
-  products?: never; // Si usas brands, no permitimos products
+  products?: never; 
 }
 
 type CarouselProps = ProductsCarouselProps | BrandsCarouselProps;
@@ -27,11 +27,10 @@ type CarouselProps = ProductsCarouselProps | BrandsCarouselProps;
 export default function Carousel(props: CarouselProps) {
   const { autoPlay = true, interval = 3000, className = "" } = props;
   
-  // La lógica de mapeo y filtrado se hace 100% dentro de este useMemo
+  // Preparamos los slides una sola vez, no en cada render
   const slides = useMemo(() => {
-    // CASO 1: Nos pasaron productos (Carrusel principal)
+    // Si recibimos productos, mostramos uno por serie (sin repetir)
     if ('products' in props && props.products) {
-      // Filtro interno para obtener solo 1 producto por serie
       const seenSeries = new Set();
       const featuredProducts = props.products.filter((product) => {
         const key = product.series || product.brand;
@@ -47,7 +46,7 @@ export default function Carousel(props: CarouselProps) {
       ));
     }
 
-    // CASO 2: Nos pasaron marcas (Carrusel secundario)
+    // Si recibimos marcas, mostramos sus logos
     if ('brands' in props && props.brands) {
       return props.brands.map((brand) => (
         <div key={brand.name} className="w-full h-full flex items-center justify-center bg-white/10 backdrop-blur-sm p-4">
@@ -57,29 +56,31 @@ export default function Carousel(props: CarouselProps) {
     }
 
     return [];
-  }, [props]); // Se recalcula si cambian los productos o marcas
+  }, [props]); // solo se recalcula si cambian products o brands
 
   const [current, setCurrent] = useState<number>(0);
 
-  // Reinicia el carrusel si cambian los slides
+  // Cuando los slides cambian, volvemos al primero
   useEffect(() => {
     setCurrent(0);
   }, [slides]);
 
-  // Auto-play
+  // Autoavance automático
   useEffect(() => {
-    if (!autoPlay || slides.length <= 1) return;
+    if (!autoPlay || slides.length <= 1) return; 
     const timer = setInterval(() => {
-      setCurrent((prev: number) => (prev + 1) % slides.length);
+      setCurrent((prev: number) => (prev + 1) % slides.length); // avanza y vuelve al inicio
     }, interval);
-    return () => clearInterval(timer);
+    return () => clearInterval(timer); 
   }, [slides, autoPlay, interval]);
 
+  // Si no hay nada que mostrar, no renderizamos
   if (!slides.length) return null;
 
   return (
     <div className={`relative w-full max-w-5xl mx-auto ${className}`}>
       <div className="relative h-full overflow-hidden rounded-3xl">
+        {/* Todos los slides existen en el DOM, pero solo el activo se ve */}
         {slides.map((slide: ReactNode, index: number) => (
           <div
             key={index}
@@ -92,17 +93,22 @@ export default function Carousel(props: CarouselProps) {
         ))}
       </div>
 
-      {/* Controles */}
+      {/* Flechas y puntitos solo si hay más de un slide */}
       {slides.length > 1 && (
         <>
+          {/* Flecha izquierda: retrocede, si está en 0 salta al último */}
           <button
             onClick={() => setCurrent((prev) => (prev - 1 + slides.length) % slides.length)}
             className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full z-20"
           > ❮ </button>
+          
+          {/* Flecha derecha: avanza, si está en el último salta al primero */}
           <button
             onClick={() => setCurrent((prev) => (prev + 1) % slides.length)}
             className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full z-20"
           > ❯ </button>
+          
+          {/* Indicadores de posición */}
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
             {slides.map((_: ReactNode, index: number) => (
               <button

@@ -1,7 +1,7 @@
 // src/app/shop/page.tsx (o donde tengas ShopPage)
 "use client"
 
-import { useMemo, useState } from "react"
+import { useMemo, useState, useEffect } from "react"
 import { useSearchParams } from "next/navigation"
 import ProductGrid from "../../components/ProductGrid"
 import ShopFilters from "../../components/shop/ShopFilters"
@@ -14,14 +14,22 @@ const normalize = (str: string) =>
 export default function ShopPage() {
   const searchParams = useSearchParams()
   const brandFromUrl = searchParams.get("brand")
-  
+  const seriesFromUrl = searchParams.get("series")
+
   const [category, setCategory] = useState("all")
   const [sort, setSort] = useState("default")
   const [brandFilter, setBrandFilter] = useState<string | null>(brandFromUrl)
 
-  // Actualizar brandFilter si cambia la URL
-  // Nota: esto es útil si el usuario navega dentro de /shop
-  
+  // Sincroniza la categoría seleccionada con el parámetro "series" de la URL
+  useEffect(() => {
+    if (seriesFromUrl) {
+      setCategory(normalize(seriesFromUrl))
+    } else {
+      setCategory("all")
+    }
+  }, [seriesFromUrl])
+
+  // Construye las categorías a partir de la data (series únicas)
   const categories = useMemo(() => {
     const map = new Map()
 
@@ -40,10 +48,11 @@ export default function ShopPage() {
     return Array.from(map.values())
   }, [])
 
+  // Filtrado y ordenamiento de productos
   const filteredProducts = useMemo(() => {
     let data = [...products]
 
-    // Filtro por marca
+    // Filtro por marca (si existe)
     if (brandFilter) {
       data = data.filter(
         (p) => normalize(p.brand) === brandFilter
@@ -57,11 +66,11 @@ export default function ShopPage() {
       )
     }
 
+    // Ordenamiento
     switch (sort) {
       case "price-low":
         data.sort((a, b) => a.priceMin - b.priceMin)
         break
-
       case "price-high":
         data.sort((a, b) => b.priceMax - a.priceMax)
         break
@@ -72,7 +81,7 @@ export default function ShopPage() {
 
   return (
     <section>
-      {/* Mostrar el filtro de marca activo si existe */}
+      {/* Indicador de filtro por marca activo */}
       {brandFilter && (
         <div className="flex items-center gap-2 mb-4">
           <span className="text-sm text-gray-600">
@@ -87,17 +96,20 @@ export default function ShopPage() {
         </div>
       )}
 
+      {/* Barra de categorías (series) */}
       <CategoryBar
         categories={categories}
         selected={category}
         onChange={setCategory}
       />
 
+      {/* Filtros de orden */}
       <ShopFilters
         sort={sort}
         setSort={setSort}
       />
 
+      {/* Grid de productos */}
       <ProductGrid
         products={filteredProducts}
       />

@@ -18,7 +18,7 @@ export default function PhoneCard({
       className="group flex flex-col items-center border-r border-gray-200 px-3 py-4"
     >
       {/* Image Container */}
-      <div className="relative h-[170px] w-full overflow-hidden">
+      <div className="relative h-42.5 w-full overflow-hidden">
         <Image
           src={image}
           alt={name}

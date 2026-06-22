@@ -19,12 +19,12 @@ export default function BrandCategory({ brands: brandNames }: BrandCategoryProps
     : brands;
 
   return (
-    <div className="flex justify-around flex-wrap gap-4">
+    <div className="flex justify-evenly flex-wrap ">
       {filteredBrands.map((brand) => (
         <Link
           href={`/shop?brand=${encodeURIComponent(brand.name.toLowerCase())}`}
           key={brand.altText}
-          className="block w-32 h-32 sm:w-40 sm:h-40 bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-4"
+          className="block w-32 h-32 sm:w-40 sm:h-40 rounded-xl  hover:shadow-md transition-all p-4"
           title={brand.name}
         >
           <Image

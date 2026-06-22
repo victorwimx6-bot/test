@@ -95,26 +95,19 @@ export default function Footer() {
   );
 }
 
-function Item({
-  icon,
-  text,
-}: {
+function Item({icon, text}: {
   icon: string;
   text: string;
 }) {
   return (
     <div className="flex gap-2 items-center mb-3">
-      <img src={icon} alt="" className="w-5 h-5" />
+      <img src={icon} alt="icono" className="w-5 h-5" />
       <span className="text-sm">{text}</span>
     </div>
   );
 }
 
-function ItemLink({
-  icon,
-  text,
-  href,
-}: {
+function ItemLink({icon, text, href}: {
   icon: string;
   text: string;
   href: string;

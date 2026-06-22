@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import ProductCard from "./ProductCard"
+import Product from "../data/products"
 
 const ChevronL = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -19,6 +20,7 @@ const DESKTOP_PAGE = 8
 const MOBILE_PAGE = 4
 const BREAKPOINT = "(min-width: 768px)"
 
+// Hook que detecta si la pantalla es ≥ 768px usando matchMedia
 function useIsDesktop() {
   const [isDesktop, setIsDesktop] = useState(false)
 
@@ -35,19 +37,6 @@ function useIsDesktop() {
   return isDesktop
 }
 
-type Product = {
-  id: number
-  name: string
-  series: string
-  brand: string
-  images: string[]
-  priceMin: number
-  priceMax: number
-  discount?: number
-  href: string
-  colors?: { hex: string }[]
-}
-
 type Props = {
   products: Product[]
 }
@@ -59,6 +48,7 @@ export default function ProductGrid({ products = [] }: Props) {
   const totalPages = Math.max(1, Math.ceil(products.length / pageSize))
   const [page, setPage] = useState(0)
 
+  // Si se reducen los productos y la página actual ya no existe, vuelve a 0
   useEffect(() => {
     if (page > totalPages - 1) setPage(0)
   }, [totalPages, page])
@@ -84,12 +74,14 @@ export default function ProductGrid({ products = [] }: Props) {
           </button>
         )}
 
+        {/* Layout móvil: 2 columnas, visible solo < 768px */}
         <div className="grid grid-cols-2 gap-4 md:hidden">
           {items.map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}
         </div>
 
+        {/* Layout desktop: 4 columnas, visible solo ≥ 768px */}
         <div className="hidden md:grid md:grid-cols-4 gap-4">
           {items.map((p) => (
             <ProductCard key={p.id} product={p} />

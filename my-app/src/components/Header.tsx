@@ -20,21 +20,19 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white">
-      {/* CONTAINER */}
       <nav className="mx-auto flex h-18 max-w-7xl items-center justify-evenly px-4 sm:px-6 lg:px-8">
+        {/* logo */}
+        <Link href="/">
+          <Image
+            src="https://wiemx.com/wp-content/uploads/2025/06/wiemx_logo-e1721334141541.png"
+            alt="logo"
+            width={140}
+            height={50}
+            className="object-contain"
+          />
+        </Link>
 
-        {/* LOGO */}
-            <Link href="/">
-      <Image
-        src="https://wiemx.com/wp-content/uploads/2025/06/wiemx_logo-e1721334141541.png"
-        alt="logo"
-        width={140}
-        height={50}
-        className="object-contain"
-      />
-    </Link>
-
-        {/* DESKTOP NAV */}
+        {/* nav dekstop */}
         <div className="hidden md:flex items-center gap-5 lg:gap-8 xl:gap-10">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
@@ -63,7 +61,7 @@ export default function Header() {
           })}
         </div>
 
-        {/* MOBILE BUTTON */}
+        {/* boton mobile */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="flex items-center md:hidden"
@@ -94,7 +92,7 @@ export default function Header() {
         </button>
       </nav>
 
-      {/* MOBILE MENU */}
+      {/* menu mobile */}
       <div
         className={`
           overflow-hidden transition-all duration-300 md:hidden
@@ -102,7 +100,6 @@ export default function Header() {
         `}
       >
         <div className="flex flex-col px-4 py-3">
-
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
 
@@ -124,7 +121,6 @@ export default function Header() {
               </Link>
             );
           })}
-
         </div>
       </div>
     </header>

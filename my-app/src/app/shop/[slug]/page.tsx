@@ -4,6 +4,7 @@ import { useState, use } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { products } from "../../../data/products"
+import WishlistButton from "../../../components/wishlist/WishlistButton"
 
 const cx = (...classes: (string | false | undefined)[]) => classes.filter(Boolean).join(" ")
 
@@ -74,7 +75,10 @@ function ProductInfo({ product }: { product: any }) {
   return (
     <div className="flex flex-col gap-4 text-gray-800">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-semibold text-gray-900 tracking-tight">{product.name}</h1>
+        <div className="flex items-center gap-4">
+          <h1 className="text-2xl sm:text-3xl font-semibold text-gray-900 tracking-tight">{product.name}</h1>
+          <WishlistButton productId={product.id} className="w-10 h-10" />
+        </div>
         <p className="mt-2 text-xl font-bold text-blue-600">
           ${product.priceMin.toLocaleString("es-MX")}.00 – ${product.priceMax.toLocaleString("es-MX")}.00
         </p>

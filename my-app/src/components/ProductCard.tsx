@@ -2,31 +2,11 @@
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-
-// helpers locales
-const getWishlistIds = (): number[] => {
-  if (typeof window === "undefined") return []
-  try {
-    return JSON.parse(localStorage.getItem("wishlist") || "[]")
-  } catch { return [] }
-}
-
-const setWishlistIds = (ids: number[]) => {
-  localStorage.setItem("wishlist", JSON.stringify(ids))
-  window.dispatchEvent(new Event("wishlist-changed"))
-}
+import WishlistButton from "./wishlist/WishlistButton"
 
 export default function ProductCard({ product }: { product: any }) {
   const [imgIdx, setImgIdx] = useState(0)
   const multi = product.images.length > 1
-  const [wishlisted, setWishlisted] = useState(() => getWishlistIds().includes(product.id))
-
-  const toggleWishlist = () => {
-    const ids = getWishlistIds()
-    const next = wishlisted ? ids.filter(id => id !== product.id) : [...ids, product.id]
-    setWishlistIds(next)
-    setWishlisted(!wishlisted)
-  }
 
   return (
     <div className="relative flex flex-col bg-white group border border-gray-200 hover:shadow-md transition">
@@ -36,21 +16,10 @@ export default function ProductCard({ product }: { product: any }) {
         </span>
       )}
 
-      {/* Botón wishlist */}
-      <button
-        onClick={toggleWishlist}
-        className="absolute top-2 right-2 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/80 hover:bg-white shadow transition"
-      >
-        {wishlisted ? (
-          <svg className="w-5 h-5 text-red-500" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-          </svg>
-        ) : (
-          <svg className="w-5 h-5 text-gray-400 hover:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-          </svg>
-        )}
-      </button>
+      <WishlistButton
+        productId={product.id}
+        className="absolute top-2 right-2 z-10 w-8 h-8"
+      />
 
       {/* Imagen */}
       <div className="relative w-full aspect-4/3 bg-white overflow-hidden">

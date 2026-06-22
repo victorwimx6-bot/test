@@ -1,6 +1,26 @@
-// src/data/products.js
+// src/data/products.ts
+export interface ProductColor {
+  hex: string;
+}
 
-export const products = [
+export interface Product {
+  id: number;
+  name: string;
+  series: string;
+  brand: string;
+  images: string[];
+  priceMin: number;
+  priceMax: number;
+  colors?: ProductColor[];
+  discount?: number;
+  descripcion1: string;
+  descripcion2: string;
+  descripcion3: string;
+  wishlist: boolean;
+  href: string;
+}
+
+export const products: Product[] = [
   {
     id: 1,
     name: "IPhone 13 Pro",
